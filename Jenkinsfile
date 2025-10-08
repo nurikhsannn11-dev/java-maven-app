@@ -7,7 +7,6 @@ pipeline {
             steps {
                 script {
                     echo "Testing the application for branch ${env.BRANCH_NAME}"
-                    // Untuk simulasi error, Anda bisa tambahkan 'error("Simulating a build failure")' di bawah ini
                 }
             }
         }
@@ -19,7 +18,6 @@ pipeline {
             }
             steps {
                 echo "Building the application..."
-                // Contoh perintah build: sh 'mvn clean package'
             }
         }
 
@@ -45,7 +43,7 @@ pipeline {
         success {
             // Mengirim notifikasi jika build SUKSES
             discordSend(
-                webhookURL: 'YOUR_DISCORD_WEBHOOK_URL',
+                webhookURL: 'https://ptb.discord.com/api/webhooks/1425392944931672106/SL865yKe8A0YkqtZF2igdoStSLDZK4QRsEF2hvaZ3iIdbsE7EYiKvS-IPWGgX_ElmUf0',
                 message: "✅ Build SUKSES: Job `${env.JOB_NAME}` build `${env.BUILD_NUMBER}` berhasil.",
                 title: "Build Succeeded",
                 color: '#00ff00'
@@ -54,7 +52,7 @@ pipeline {
         failure {
             // Mengirim notifikasi jika build GAGAL
             discordSend(
-                webhookURL: 'YOUR_DISCORD_WEBHOOK_URL',
+                webhookURL: 'https://ptb.discord.com/api/webhooks/1425392944931672106/SL865yKe8A0YkqtZF2igdoStSLDZK4QRsEF2hvaZ3iIdbsE7EYiKvS-IPWGgX_ElmUf0',
                 message: "❌ Build GAGAL: Job `${env.JOB_NAME}` build `${env.BUILD_NUMBER}` gagal. Cek log di ${env.BUILD_URL}",
                 title: "Build Failed",
                 color: '#ff0000'
